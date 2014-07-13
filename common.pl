@@ -133,9 +133,17 @@ for (@cruft) {
 	my $metapl = $newname->child("meta/META.PL");
 	$metapl->parent->mkpath;
 	$metapl->spew_utf8(
-		"print STDERR qq/ADDING '$origmod' AS NO_INDEX PACKAGE\\n/;\n",
-		"push \@{ \$_->{no_index}{package} ||= [] }, '$origmod';\n\n",
+		map {
+			my $pkg = $_;
+			"print STDERR qq/Do not index package '$pkg'\\n/;\n",
+			"push \@{ \$_->{no_index}{package} ||= [] }, '$pkg';\n\n";
+		} ($origmod, our @no_index)
 	);
+}
+
+our $tweak_dir;
+if ($tweak_dir) {
+	$tweak_dir->($newname);
 }
 
 # Build dist
