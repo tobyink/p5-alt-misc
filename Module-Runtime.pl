@@ -5,7 +5,7 @@ use warnings;
 our $dist    = 'Module-Runtime';
 our $origmod = "Module::Runtime";
 our $altdist = sprintf('Alt-%s-ButEUMM', $dist);
-our $altver  = '0.001';
+our $altver  = '0.002';
 our @cruft   = qw(
 	.gitignore Build.PL Changes Makefile.PL MANIFEST
 	META.json META.yml README SIGNATURE
@@ -22,4 +22,4 @@ our $tweak_meta = sub {
 	$meta->{prereqs}{test}{requires}{"Test::More"} = '0.47';
 };
 
-do "common.pl" or die($@);
+do "./common.pl" or die($@);
