@@ -14,7 +14,7 @@ our ($dist, $origmod, $altdist, $altver, @cruft);
 my $ua   = "HTTP::Tiny"->new;
 my $json = "JSON::PP"->new;
 my $meta = $json->decode(
-	$ua->get('http://api.metacpan.org/v0/release/'.$dist)->{content}
+	$ua->get('http://fastapi.metacpan.org/v1/release/'.$dist)->{content}
 );
 
 # Download and extract original distribution
