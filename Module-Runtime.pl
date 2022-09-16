@@ -5,7 +5,7 @@ use warnings;
 our $dist    = 'Module-Runtime';
 our $origmod = "Module::Runtime";
 our $altdist = sprintf('Alt-%s-ButEUMM', $dist);
-our $altver  = '0.002';
+our $altver  = '0.003';
 our @cruft   = qw(
 	.gitignore Build.PL Changes Makefile.PL MANIFEST
 	META.json META.yml README SIGNATURE
