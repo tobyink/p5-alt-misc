@@ -6,7 +6,7 @@ use File::chdir;
 our $dist    = 'Lexical-Var';
 our $origmod = "Lexical::Var";
 our $altdist = sprintf('Alt-%s-ButSupportModernPerl', $dist);
-our $altver  = '0.001';
+our $altver  = '0.002';
 our $origver = '0.009';
 our @cruft   = qw(
 	.gitignore Build.PL Changes Makefile.PL MANIFEST
@@ -25,7 +25,7 @@ our $description = "This is an alternative distribution of $origmod, "
 
 our $tweak_meta = sub {
 	my $meta = shift;
-	$meta->{prereqs}{runtime}{requires}{perl} = '5.008001';
+	$meta->{prereqs}{runtime}{requires}{perl} = '5.018000';
 };
 
 our $tweak_dir = sub {
@@ -47,6 +47,14 @@ CONFIG
 		patch => (
 			'-d'   => $dir,
 			'-i'   => $dir->parent->child( 'patches/lexvar.patch' )->absolute,
+			'-p1',
+		)
+	);
+	
+	system(
+		patch => (
+			'-d'   => $dir,
+			'-i'   => $dir->parent->child( 'patches/lexvar2.patch' )->absolute,
 			'-p1',
 		)
 	);
